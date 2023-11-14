@@ -5,10 +5,28 @@
  */
 package ejercicio4;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
  */
 public class Main {
-    
+
+    public static void main(String[] args) throws InterruptedException {
+        NumeroOculto numeroOculto = new NumeroOculto(33);
+        ArrayList<Hilo> hilos = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Hilo hilo = new Hilo(i + 1, numeroOculto);
+            hilos.add(hilo);
+        }
+        
+        for (Hilo hilo : hilos) {
+            hilo.start();
+            hilo.join();
+        }
+        
+        
+    }
+
 }

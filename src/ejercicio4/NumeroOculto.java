@@ -5,9 +5,6 @@
  */
 package ejercicio4;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Usuario
@@ -19,22 +16,22 @@ public class NumeroOculto {
 
     public NumeroOculto(int numero) {
         this.numero = numero;
+        adivinado = false;
     }
 
-    public synchronized int propuestaNumero(int num) {
-        while (!adivinado) {
+    public synchronized int propuestaNumero(int num) throws InterruptedException {
+        int respuesta = num == numero ? 1 : adivinado ? -1 : 0;
+
+        if (num != numero) {
             try {
+                // Nos bloqueamos hasta que se produzca una notificación
                 wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NumeroOculto.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
-        int respuesta = 0;
-        if (num == numero) {
-            respuesta = 1;
-            adivinado = true;
-        }
+        notifyAll();
         return respuesta;
     }
 
