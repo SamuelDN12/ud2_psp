@@ -18,14 +18,15 @@ class Hilo implements Runnable {
 
 public class LanzaHilos {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
     Thread h1 = new Thread(new Hilo("H1"));
     Thread h2 = new Thread(new Hilo("H2"));
     h1.start();
-    h2.start();
+    h2.start(); 
+    h1.join();
+    h2.join();
     System.out.println("Hilo principal terminado.");
 
   }
-
 }

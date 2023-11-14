@@ -49,5 +49,7 @@ public class EjemploHiloPrioridad {
     System.out.println("h2 (Prio. Máx: "+h2.getContador());
     System.out.println("h1 (Prio. Normal: "+h1.getContador());
     System.out.println("h3 (Prio. Mínima: "+h3.getContador());
+    
+    
   }
 }
