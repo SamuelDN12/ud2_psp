@@ -10,6 +10,7 @@ class Cola {
     private boolean disponible = false;
 
     synchronized int get() {
+
         while (!disponible) {
             try {
                 wait();
@@ -17,6 +18,7 @@ class Cola {
 
             }
         }
+
         //visualizar número
         disponible = false;
         notifyAll();
@@ -30,10 +32,10 @@ class Cola {
             } catch (InterruptedException e) {
             }
         }
+
         numero = valor;
         disponible = true;
         //visualizar número
-        notifyAll();
     }
 
     synchronized boolean isDisponible() {
@@ -58,8 +60,8 @@ class Productor extends Thread {
         for (int i = 0; i < 5; i++) {
             cola.put(i); //pone el número
             System.out.println(i + "=>Productor : " + n + ", produce : " + i);
-
         }
+
     }
 }
 
