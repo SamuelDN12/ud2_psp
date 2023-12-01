@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio8;
+package ejercicio10;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-class Producto {
-    
-}
+
 
 class Recurso {
     private ArrayList<Integer> lista = new ArrayList<>();
     private int contador = 0;
     
-    synchronized public void add() {
-        while (lista.size() > 6) {
+    synchronized public void put() {
+        while (lista.size() > 7) {
             try {
                 wait();
             } catch (InterruptedException ex) {
@@ -60,7 +58,7 @@ class Productor extends Thread {
     @Override
     public void run() {
         while (true) {
-            recu.add();
+            recu.put();
         }
     }
     
